@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why I'd Still Choose You</title>
+<style>
+:root{
+ --bg:#07131d; --panel:#0d1c28; --gold:#e8b957; --paper:#f1d69a;
+ --ink:#382316; --red:#9b3428; --blue:#1e6686; --wood:#4e2d18;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#050b11;color:#fff;font-family:Georgia,"Times New Roman",serif}
+body::before{
+ content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;
+ background-image:radial-gradient(circle at 20% 20%,#fff 0 1px,transparent 1.5px),
+ radial-gradient(circle at 80% 40%,#fff 0 1px,transparent 1.5px);
+ background-size:110px 110px,150px 150px;
+}
+.topbar{
+ position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;
+ padding:12px 18px;background:rgba(4,11,17,.92);border-bottom:1px solid rgba(232,185,87,.35);
+ backdrop-filter:blur(8px)
+}
+.brand{font-weight:900;letter-spacing:1px;color:var(--gold)}
+.topbtn{border:1px solid var(--gold);background:#152a38;color:white;border-radius:999px;padding:8px 12px;cursor:pointer}
+.hero{
+ min-height:90vh;display:grid;grid-template-columns:1.2fr .9fr;gap:18px;padding:22px;
+ background:
+ linear-gradient(rgba(7,19,29,.1),rgba(7,19,29,.72)),
+ radial-gradient(circle at 75% 25%,rgba(255,194,99,.42),transparent 24%),
+ linear-gradient(#3a9ac0 0 48%,#0e5679 49% 100%);
+}
+.ship-scene,.letter-panel,.info-panel,.surprise-panel,.chapter-card,.final-card,.treasure-room{
+ border:3px solid var(--wood);border-radius:16px;box-shadow:0 18px 45px rgba(0,0,0,.42);
+}
+.ship-scene{
+ position:relative;overflow:hidden;min-height:430px;
+ background:
+ radial-gradient(circle at 80% 20%,rgba(255,255,255,.35),transparent 20%),
+ linear-gradient(#4fa9ca 0 54%,#0e5a7e 55% 100%);
+}
+.sun{position:absolute;right:40px;top:38px;width:95px;height:95px;border-radius:50%;background:#ffd580;box-shadow:0 0 40px #ffd580}
+.cloud{position:absolute;background:white;border-radius:999px;opacity:.9}
+.cloud.c1{width:120px;height:28px;left:60px;top:78px}
+.cloud.c2{width:160px;height:34px;right:110px;top:120px}
+.ship{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);font-size:120px;filter:drop-shadow(0 12px 8px rgba(0,0,0,.25))}
+.snail{position:absolute;left:30px;bottom:48px;font-size:72px}
+.ring{position:absolute;left:120px;bottom:85px;font-size:24px;font-style:italic;line-height:1.4}
+.call-box{position:absolute;left:26px;top:24px;background:var(--paper);color:var(--ink);padding:16px 18px;border:2px solid #7a4c26;border-radius:8px;max-width:230px}
+.answer{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);padding:13px 22px;border:3px solid var(--gold);background:#402817;color:white;border-radius:10px;font-weight:800;cursor:pointer}
+.right-stack{display:grid;grid-template-columns:1.4fr .9fr;gap:14px}
+.letter-panel{background:var(--paper);color:var(--ink);padding:34px;text-align:center;display:grid;place-items:center}
+.letter-panel h1{font-size:clamp(36px,5vw,64px);margin:0 0 10px;color:#4b2b19}
+.info-panel,.surprise-panel{padding:24px;background:rgba(8,17,24,.93)}
+.surprise-panel{background:var(--paper);color:var(--ink)}
+.cta{padding:12px 18px;border:2px solid var(--gold);background:#5d351d;color:white;border-radius:9px;cursor:pointer;font-weight:800}
+.grid{padding:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;background:#050b11}
+.chapter-card{
+ min-height:320px;position:relative;overflow:hidden;background:#0e1c28;cursor:pointer;
+ transition:.2s transform,.2s box-shadow;
+}
+.chapter-card:hover{transform:translateY(-4px);box-shadow:0 22px 48px rgba(0,0,0,.5)}
+.chapter-card img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.chapter-card::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 25%,rgba(0,0,0,.84))}
+.ribbon{position:absolute;z-index:3;left:0;top:0;background:#8f2d22;color:white;padding:10px 16px;font-weight:800;border-bottom-right-radius:8px}
+.card-copy{position:absolute;z-index:3;left:18px;right:18px;bottom:18px}
+.card-copy h3{font-size:28px;margin:0 0 6px;color:#ffe6a4}
+.card-copy p{margin:0;line-height:1.45}
+.jersey-card{display:grid;place-items:center;background:
+ radial-gradient(circle at 50% 10%,rgba(95,208,235,.18),transparent 30%),
+ linear-gradient(#07131d,#112d3d)}
+.jersey{font-family:Arial,sans-serif;text-align:center;font-weight:900;font-size:34px;color:white}
+.jersey strong{display:block;font-size:112px;line-height:.85;color:#e7f7fb;text-shadow:0 0 20px rgba(70,210,235,.4)}
+.love-card{display:grid;place-items:center;background:radial-gradient(circle,#241735,#070a12 70%)}
+.bubbles{display:flex;gap:18px;align-items:center}.bubble{background:white;color:#7a2344;padding:14px 18px;border-radius:999px}.heart{font-size:70px;color:#ff98c7;text-shadow:0 0 18px #ff98c7}
+.treasure-room{margin:18px;padding:24px;background:linear-gradient(#24170f,#0d0a08);text-align:center}
+.chests{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.chest{background:#3f2817;border:2px solid var(--gold);border-radius:12px;padding:18px;cursor:pointer}
+.chest .icon{font-size:48px}.chest small{display:block;color:#f7dda0;margin-top:8px}
+.final-card{margin:18px;padding:30px;background:
+ linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.45)),
+ linear-gradient(#e88a55,#7b3a4d 58%,#0c2535);display:grid;grid-template-columns:1fr 1.2fr;gap:18px;align-items:center}
+.final-note{background:var(--paper);color:var(--ink);padding:24px;border:3px solid var(--wood);border-radius:12px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;place-items:center;z-index:100;padding:20px}
+.modal.show{display:grid}
+.modal-card{width:min(940px,95vw);max-height:90vh;overflow:auto;background:#0e1c28;border:3px solid var(--gold);border-radius:16px;padding:22px}
+.close{float:right;background:none;border:0;color:white;font-size:28px;cursor:pointer}
+.modal-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+.modal-grid img{width:100%;max-height:64vh;object-fit:cover;border:8px solid #f5ebd1;border-radius:8px}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.gallery img{width:100%;height:260px;object-fit:cover;border:5px solid #f5ebd1;border-radius:8px}
+.parchment{background:var(--paper);color:var(--ink);padding:20px;border-radius:12px;border:3px solid var(--wood)}
+.hidden-note{display:none;margin-top:12px;background:#fff3c4;color:var(--ink);padding:14px;border-radius:10px}
+@media(max-width:1000px){.hero{grid-template-columns:1fr}.right-stack{grid-template-columns:1fr 1fr}.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.right-stack{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.modal-grid,.final-card{grid-template-columns:1fr}.chests{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="topbar">
+ <div class="brand">☠ Why I'd Still Choose You</div>
+ <button class="topbtn" onclick="toggleMusic()">♫ Music: <span id="musicState">Off</span></button>
+</div>
+
+<section class="hero">
+ <div class="ship-scene">
+   <div class="sun"></div><div class="cloud c1"></div><div class="cloud c2"></div>
+   <div class="call-box"><strong>INCOMING TRANSMISSION</strong><br><br>From:<br>Your Favorite Crewmate ❤️</div>
+   <div class="ship">⛵</div><div class="snail">🐌</div><div class="ring">Ring...<br>Ring...<br>Ring...</div>
+   <button class="answer" onclick="document.getElementById('chapters').scrollIntoView({behavior:'smooth'})">ANSWER THE CALL ⚓</button>
+ </div>
+ <div class="right-stack">
+   <div class="letter-panel">
+     <div>
+       <div style="font-size:44px">🏴‍☠️</div>
+       <h1>CAPTAIN ARAMIS,</h1>
+       <p>Before we continue our adventure...<br>I wanted to remind you of something.</p>
+       <button class="cta" onclick="document.getElementById('chapters').scrollIntoView({behavior:'smooth'})">CONTINUE →</button>
+     </div>
+   </div>
+   <div class="info-panel">
+     <h2 style="color:var(--gold)">☠ HOW IT WORKS</h2>
+     <p>Go through our memories, one chapter at a time.</p>
+     <p>Click hidden treasures for little notes.</p>
+     <p>At the end, you choose what happens next.</p>
+     <button class="cta" onclick="document.getElementById('chapters').scrollIntoView({behavior:'smooth'})">LET'S GO ⚓</button>
+   </div>
+   <div class="surprise-panel">
+     <h2>HIDDEN SURPRISES</h2>
+     <p>Look around for:</p>
+     <p>💌 Love notes<br>📸 Pictures<br>😂 Inside jokes<br>🐶 Captain Vaquita<br>🧰 Treasure chests</p>
+   </div>
+ </div>
+</section>
+
+<section class="grid" id="chapters">
+ <article class="chapter-card" onclick="openModal('yard')">
+   <img src="assets/yardhouse.jpg"><div class="ribbon">1 · HOW WE STARTED</div>
+   <div class="card-copy"><h3>Yard House</h3><p>Our first date. I was nervous, but I already wanted it to go well.</p></div>
+ </article>
+ <article class="chapter-card jersey-card" onclick="openModal('sharks')">
+   <div class="ribbon">2 · SHARKS GAME</div>
+   <div class="jersey">CELEBRINI<strong>71</strong></div>
+   <div class="card-copy"><p>I remember sitting next to you and thinking, “This feels easy.”</p></div>
+ </article>
+ <article class="chapter-card love-card" onclick="openModal('love')">
+   <div class="ribbon">3 · THE FIRST “I LOVE YOU”</div>
+   <div class="bubbles"><div class="bubble">I love you.</div><div class="heart">♡</div><div class="bubble">I love you.</div></div>
+   <div class="card-copy"><p>At the same time. Every time. That’s our thing.</p></div>
+ </article>
+ <article class="chapter-card" onclick="openModal('birthday')">
+   <img src="assets/birthday_flowers.jpg"><div class="ribbon">4 · MY BIRTHDAY</div>
+   <div class="card-copy"><h3>The Day You Made Me Feel Chosen</h3></div>
+ </article>
+ <article class="chapter-card" onclick="openModal('seattle')">
+   <img src="assets/seattle1.jpg"><div class="ribbon">5 · SEATTLE</div>
+   <div class="card-copy"><h3>Sunny Seattle</h3><p>The World Cup, the waterfront, and one of the happiest trips I’ve taken.</p></div>
+ </article>
+ <article class="chapter-card" onclick="openModal('inout')">
+   <img src="assets/inout2.jpg"><div class="ribbon">6 · IN-N-OUT NIGHTS</div>
+   <div class="card-copy"><h3>We Were Worth It</h3><p>Not fancy. Not planned. Still one of my favorite memories.</p></div>
+ </article>
+ <article class="chapter-card" onclick="openModal('hug')">
+   <img src="assets/hug.jpg"><div class="ribbon">7 · THE HUG</div>
+   <div class="card-copy"><h3>Peace</h3><p>Your presence made everything else go quiet.</p></div>
+ </article>
+ <article class="chapter-card" onclick="openModal('vaquita')">
+   <img src="assets/vaquita4.jpg"><div class="ribbon">8 · CAPTAIN VAQUITA</div>
+   <div class="card-copy"><h3>Woah! Woah! Woah!</h3><p>You calm her in a way that reminds me what you could do for me, if I let you.</p></div>
+ </article>
+</section>
+
+<section class="treasure-room">
+ <h2 style="color:var(--gold)">☠ TREASURE ROOM</h2>
+ <p>Click any chest to see what’s inside.</p>
+ <div class="chests">
+   <div class="chest" onclick="reveal(this,'I love how safe your hugs make me feel.')"><div class="icon">🧰❤️</div><small>Reasons I Love You</small><div class="hidden-note"></div></div>
+   <div class="chest" onclick="reveal(this,'You made ordinary things—drives, dinner, face masks, naps—feel special.')"><div class="icon">🧰📸</div><small>Our Pictures</small><div class="hidden-note"></div></div>
+   <div class="chest" onclick="reveal(this,'Woah... woah... woah! 😂')"><div class="icon">🧰😂</div><small>Inside Joke</small><div class="hidden-note"></div></div>
+   <div class="chest" onclick="reveal(this,'I still believe we can meet each other halfway and build something healthier together.')"><div class="icon">🧰💌</div><small>Letter to You</small><div class="hidden-note"></div></div>
+ </div>
+</section>
+
+<section class="final-card">
+ <div class="final-note">
+   <h2>FINAL CHAPTER</h2>
+   <p>Life isn’t asking us to be perfect.</p>
+   <p>It’s asking if we’re willing.</p>
+   <p>Willing to listen.<br>Willing to grow.<br>Willing to forgive.<br>Willing to choose each other again.</p>
+   <p><strong>If you’re willing... I’m still here.</strong></p>
+ </div>
+ <div style="text-align:center">
+   <div style="font-size:110px">⛵🌅</div>
+   <h2 style="color:#ffe7a3">Always.</h2>
+   <button class="cta" onclick="celebrate()">CONTINUE OUR ADVENTURE ❤️</button>
+ </div>
+</section>
+
+<div class="modal" id="modal"><div class="modal-card"><button class="close" onclick="closeModal()">×</button><div id="modalContent"></div></div></div>
+
+<script>
+const data={
+ yard:{title:'Yard House — How We Started',image:'assets/yardhouse.jpg',text:`Our first date. I remember being nervous because I wanted it to go well. I did not know yet how important you would become to me. Looking back now, I would still choose that first date all over again.`},
+ sharks:{title:'Sharks Game',special:'jersey',text:`I remember sitting next to you and thinking, “This feels easy.” We laughed, we talked, and we were just us. The jersey says CELEBRINI, number 71, because this is our memory—not a generic hockey date.`},
+ love:{title:'The First “I Love You”',special:'love',text:`We somehow kept saying it at the exact same time. Every single time. It became our little thing—like our hearts already knew before either of us finished saying it.`},
+ birthday:{title:'My Birthday',gallery:['assets/birthday_flowers.jpg','assets/birthday_selfie.jpg'],text:`I don’t know if you realize it, but you gave me one of my favorite birthdays. You made me feel celebrated. You made me feel loved. Thank you.`},
+ seattle:{title:'Seattle in the Sun',gallery:['assets/seattle1.jpg','assets/seattle2.jpg','assets/seattle3.jpg','assets/seattle4.jpg'],text:`Seattle was one of the happiest trips I have ever taken. The weather was perfect, the World Cup made the city feel alive, and I loved getting to experience all of it with you. Seattle was beautiful because every place felt brighter with you beside me.`},
+ inout:{title:'In-N-Out Nights',gallery:['assets/inout1.jpg','assets/inout2.jpg'],text:`We already knew we were different. We knew loving each other was not always going to be easy. But sitting there, neither of us was wondering if it would be worth it. We already knew. You were worth it.`},
+ hug:{title:'The Hug',image:'assets/hug.jpg',text:`This is my favorite picture of us. Not because we are smiling. Not because it was a special occasion. Because this picture reminds me what peace felt like. I do not think you ever realized how much your presence quieted my mind.`},
+ vaquita:{title:'Captain Vaquita',gallery:['assets/vaquita1.jpg','assets/vaquita2.jpg','assets/vaquita3.jpg','assets/vaquita4.jpg'],text:`Watching you with Vaquita makes me think about how naturally you bring calm. You know how to settle her without getting frustrated, and it makes me think about what you could bring into our relationship if I let you. Also: woah, woah, woah. 😂`}
+};
+function openModal(key){
+ const d=data[key]; let media='';
+ if(d.gallery){media='<div class="gallery">'+d.gallery.map(x=>`<img src="${x}">`).join('')+'</div>'}
+ else if(d.image){media=`<img src="${d.image}">`}
+ else if(d.special==='jersey'){media='<div class="jersey" style="padding:80px 0">CELEBRINI<strong>71</strong></div>'}
+ else{media='<div class="love-card" style="min-height:380px"><div class="bubbles"><div class="bubble">I love you.</div><div class="heart">♡</div><div class="bubble">I love you.</div></div></div>'}
+ document.getElementById('modalContent').innerHTML=`<div class="modal-grid"><div>${media}</div><div class="parchment"><h2>${d.title}</h2><p>${d.text}</p></div></div>`;
+ document.getElementById('modal').classList.add('show')
+}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+function reveal(el,text){const box=el.querySelector('.hidden-note');box.textContent=text;box.style.display='block'}
+function toggleMusic(){const s=document.getElementById('musicState');s.textContent=s.textContent==='Off'?'On':'Off'}
+function celebrate(){
+ for(let i=0;i<40;i++){
+   const x=document.createElement('div');x.textContent=['💗','✨','⚓','🏴‍☠️'][Math.floor(Math.random()*4)];
+   x.style.position='fixed';x.style.left=Math.random()*100+'vw';x.style.top='-30px';x.style.zIndex='200';
+   x.style.fontSize=(18+Math.random()*22)+'px';x.style.transition='transform 3s linear,opacity 3s';
+   document.body.appendChild(x);setTimeout(()=>{x.style.transform=`translateY(110vh) rotate(${Math.random()*720}deg)`;x.style.opacity='0'},30);
+   setTimeout(()=>x.remove(),3100)
+ }
+}
+window.onclick=e=>{if(e.target.id==='modal')closeModal()}
+</script>
+</body>
+</html>
